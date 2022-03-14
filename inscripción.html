@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción de materias </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <div id="appInscripcion">
+        <div class="container-fluid">
+            <form @submit.prevent="guardarMateria" method="post" id="frmInscrip">
+                <div class="card mb-3">
+                    <div class="card-header text-white bg-dark">
+                        Inscripcion
+
+                        <button type="button" class="btn-close bg-white" data-bs-dismiss="alert" data-bs-target="#frmInscrip" aria-label="Close"></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row p-1">
+                            <div class="col col-md-1">Codigo Alumno</div>
+                            <div class="col col-md-2">
+                                <input v-model="materia.codigo" placeholder="USIS000000" required title="Codigo de alumno" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col col-md-1">Materia 1</div>
+                            <div class="col col-md-2">
+                                <input v-model="materia.materia1" placeholder="Ingre. materia 1"  required title="mat1" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col col-md-1">Materia 2</div>
+                            <div class="col col-md-2">
+                                <input v-model="materia.materia2" placeholder="Ingre. materia 2"  required title="mat2" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col col-md-1">Materia 3</div>
+                            <div class="col col-md-2">
+                                <input v-model="materia.materia3" placeholder="Ingre. materia 3"  required title="mat3" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col col-md-1">Materia 4</div>
+                            <div class="col col-md-2">
+                                <input v-model="materia.materia4" placeholder="Ingre. materia 4"  required title="mat4" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col col-md-1">Materia 5</div>
+                            <div class="col col-md-2">
+                                <input v-model="materia.materia5" placeholder="Ingre. materia 1"  required title="mat5" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-3 text-center">
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{ Inscripcion.msg }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-3 text-center">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="reset" class="btn btn-warning">Nuevo</button>
+    
+                                 <a class="btn" href="./Matricula.html">Matricular Alumno</a>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="card mb-3" id="cardBuscarMateria">
+                <div class="card-header text-white bg-dark">
+                    Busqueda de Materia
+
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="alert" data-bs-target="#cardBuscarMateria" aria-label="Close"></button>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td colspan="7">
+                                    Buscar: <input title="Introduzca el texto a buscar" @keyup="buscarMateria" v-model="buscar" class="form-control" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Codigo Alumno</th>
+                                <th>Materia 1</th>
+                                <th>Materia 2</th>
+                                <th>Materia 3</th>
+                                <th>Materia 4</th>
+                                <th>Materia 5</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="materia in materias" :key="materia.idMateria" @click="modificarMateria(materia)">
+                                <td>{{materia.codigo}}</td>
+                                <td>{{materia.materia1}}</td>
+                                <td>{{materia.materia2}}</td>
+                                <td>{{materia.materia3}}</td>
+                                <td>{{materia.materia4}}</td>
+                                <td>{{materia.materia5}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" @click="eliminarMateria(materia)">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="inscripciónbd.js"></script> 
+                       
+</body>
+</html>
